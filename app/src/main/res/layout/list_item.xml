@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:background="?android:attr/selectableItemBackground">
+
+    <!-- Иконка -->
+    <TextView
+        android:id="@+id/itemIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="📁"
+        android:textSize="24sp"
+        android:layout_marginEnd="10dp"/>
+
+    <!-- Текст -->
+    <TextView
+        android:id="@+id/itemText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="Имя файла"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:ellipsize="end"
+        android:maxLines="2"/>
+
+</LinearLayout>
