@@ -1,0 +1,73 @@
+name: Build BETA APK
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Android
+      uses: android-actions/setup-android@v3
+      
+    - name: Create project structure
+      run: |
+        mkdir -p app/src/main/java/com/danilka/betaexplorer/
+        mkdir -p app/src/main/res/layout/
+        
+    - name: Build APK
+      run: |
+        echo 'plugins { id "com.android.application" }
+        android {
+            namespace "com.danilka.betaexplorer"
+            compileSdk 34
+            defaultConfig {
+                applicationId "com.danilka.betaexplorer"
+                minSdk 21
+                targetSdk 34
+                versionCode 1
+                versionName "1.0"
+            }
+            buildTypes { release { minifyEnabled false } }
+        }
+        dependencies {
+            implementation "androidx.appcompat:appcompat:1.6.1"
+            implementation "com.google.android.material:material:1.9.0"
+        }' > app/build.gradle
+        
+        echo '<?xml version="1.0" encoding="utf-8"?>
+        <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+            <application
+                android:allowBackup="true"
+                android:label="DanilkaExplorer BETA"
+                android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+                android:requestLegacyExternalStorage="true">
+                <activity
+                    android:name=".MainActivity"
+                    android:exported="true"
+                    android:screenOrientation="portrait">
+                    <intent-filter>
+                        <action android:name="android.intent.action.MAIN"/>
+                        <category android:name="android.intent.category.LAUNCHER"/>
+                    </intent-filter>
+                </activity>
+            </application>
+        </manifest>' > app/src/main/AndroidManifest.xml
+        
+        # Создаем остальные файлы из кода выше
+        # (копируем MainActivity.java, activity_main.xml, list_item.xml)
+        
+        # Создаем wrapper
+        gradle wrapper --gradle-version 8.2
+        
+    - name: Build
+      run: ./gradlew assembleDebug
+      
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: DanilkaExplorer-BETA
+        path: app/build/outputs/apk/debug/*.apk
