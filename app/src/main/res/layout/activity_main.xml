@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#121212"
+    android:padding="10dp">
+
+    <!-- Заголовок -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🚀 DanilkaExplorer BETA"
+        android:textColor="#00D4FF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="10dp"/>
+
+    <!-- Панель пути -->
+    <TextView
+        android:id="@+id/pathView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="📂 Путь: /"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:padding="8dp"
+        android:background="#1E1E1E"
+        android:ellipsize="marquee"
+        android:singleLine="true"/>
+
+    <!-- Панель кнопок -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:text="🏠 Домой"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#00D4FF"
+            android:layout_marginEnd="5dp"/>
+
+        <Button
+            android:id="@+id/btnUp"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:text="⬆ Наверх"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF00FF"/>
+
+    </LinearLayout>
+
+    <!-- Список файлов -->
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="#333333"
+        android:dividerHeight="1dp"
+        android:padding="5dp"/>
+
+    <!-- Статус бар -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Бета v1.0 | Сделано с ❤️"
+        android:textColor="#888888"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:padding="8dp"/>
+
+</LinearLayout>
